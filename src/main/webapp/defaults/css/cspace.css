@@ -1989,7 +1989,6 @@ input[type=button].cs-mediaUploader-removeMedia:focus {
 /* CSPACE-4676 */
 .csc-blobs-dimension *{ display:none;}
 
-
 .cs-listView-row:hover {
     cursor:pointer;
 }
@@ -2125,4 +2124,5 @@ input[type=button].cs-mediaUploader-removeMedia:focus {
     margin-right:100px;
 }
 /* ---------------------------------------*/
+
 
