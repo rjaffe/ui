@@ -1985,3 +1985,28 @@ input[type=button].cs-mediaUploader-removeMedia:focus {
 
 /* CSPACE-4676 */
 .csc-blobs-dimension *{ display:none;}
+
+.cs-listView-row:hover {
+    cursor:pointer;
+}
+.list-table .cs-disabled.cs-listView-row:hover > td,
+.list-table .cs-disabled.cs-listView-row:focus > td {
+    background-color: #F0F5FB;
+}
+.list-table .cs-disabled.cs-listView-row:nth-child(even):hover > td,
+.list-table .cs-disabled.cs-listView-row:nth-child(even):focus > td {
+    background-color: #F0F5FB;
+}
+.list-table .cs-disabled, .cs-disabled > td {
+    color: gray !important;
+    cursor: default !important;
+}
+
+.cs-search-highlight {
+    display:inline-block;
+    overflow:hidden;
+    width:99%;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    white-space: nowrap;
+}}
