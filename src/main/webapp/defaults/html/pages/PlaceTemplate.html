@@ -1,4 +1,3 @@
-<!-- CLONED FROM tenant-customizations-v1.8/ui/defaults/html/pages/LocationTemplate.html, then modified - rjaffe 03Oct2011 -->
 <div class="csc-place-template csc-listEditor-details">
     <div class="csc-place">
         <div id="secondary-nav">
@@ -16,7 +15,7 @@
         <div class="fl-container-flex fl-fix information-group info-column">
             <div class="csc-recordEditor-header fl-container-flex header toggle csc-place-placeAuthorityInformation-label"></div>
             <div class="csc-recordEditor-togglable fl-container-flex fl-fix content main">
-                <!-- Row 1 --><!-- Using new CSS to establish field widths and margins -rjaffe 15Dec2011 (first tested 18Oct2011) -->
+                <!-- Row 1 -->
                 <div class="info-column">
                     <div class="size1of2 fl-force-left">
                         <div class="info-pair">
@@ -240,7 +239,6 @@
 					</div>
 				</div>			
 				<!-- Row 2 --><!-- Replace everything between previous 'Row 2' comment and this one if it is desirable to have a table with repeating rows instead of a repeating group -->
-                <!-- cloning and modifying Determination History row from Cataloging record -->
                 <!-- <div class="info-column">
                     <div class="info-pair">
                         <div class="header">
@@ -367,8 +365,7 @@
                                 <div class="label csc-place-note-label"></div>
                             </div>
                             <div class="content">
-								<textarea rows="4" cols="30" class="input-textarea csc-place-note"></textarea>	
-                                <!-- <input type="text" class="csc-place-note" /> -->
+								<textarea rows="4" cols="30" class="input-textarea csc-place-note"></textarea>
                             </div>
                         </div>
                     </div>
@@ -382,7 +379,7 @@
             <div class="csc-recordEditor-header fl-container-flex header toggle csc-place-localityInformation-label"></div>
             <div class="csc-recordEditor-togglable fl-container-flex fl-fix content main">
                 <div class="info-column">
-                    <!-- Row 1 --><!-- Using new CSS to establish field widths and margins --rjaffe 15Dec2011 (first tested 18Oct2011) -->
+                    <!-- Row 1 -->
                     <div class="info-column fl-force-left">
                         <div class="size1of6 fl-force-left" >
                             <div class="info-pair">
@@ -437,7 +434,7 @@
 	                        </div>
 						</div>
                     </div>
-                	<!-- Row 2 --><!-- Using new CSS to establish field widths and margins --rjaffe 15Dec2011 (first tested 18Oct2011) -->
+                	<!-- Row 2 -->
                     <div class="info-column fl-force-left">
                         <div class="size1of6 fl-force-left" >
                             <div class="info-pair">
@@ -585,190 +582,188 @@
 				<div class="info-pair">
 	                <div class="fl-container-flex fl-fix information-group infoDiv"><!--repeatable container -->
 	                    <div class="csc-place-placeGeoRefGroup"><!-- This ties to app layer, gets repeat decorations -->
-	                        <!-- <div class="fl-container-flex fl-fix repeatable-bkgnd"> --><!-- Contains fieldgroup background, which doesn't extend behind decorations -->
-	                            <div class="info-column fieldgroup">
-	                                <!-- Row 1 --><!-- Using new CSS to establish field widths and margins --rjaffe 15Dec2011 (first tested 18Oct2011) -->
-	                                <div class="info-column fl-force-left">
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair ">
-	                                            <div class="header">
-	                                                <div class="label csc-place-decimalLatitude-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-decimalLatitude" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-decimalLongitude-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-decimalLongitude" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-geodeticDatum-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <select class="csc-place-geodeticDatum input-select"><option value="">Options not loaded</option></select>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-coordUncertaintyInMeters-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-coordUncertaintyInMeters" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-coordPrecision-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-coordPrecision" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </div>
+                            <div class="info-column fieldgroup">
+                                <!-- Row 1 -->
+                                <div class="info-column fl-force-left">
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair ">
+                                            <div class="header">
+                                                <div class="label csc-place-decimalLatitude-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-decimalLatitude" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-decimalLongitude-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-decimalLongitude" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-geodeticDatum-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <select class="csc-place-geodeticDatum input-select"><option value="">Options not loaded</option></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-coordUncertaintyInMeters-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-coordUncertaintyInMeters" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-coordPrecision-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-coordPrecision" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-	                                <div class="clear"></div>
-	                                <!-- Row 2 --><!-- Using new CSS to establish field widths and margins - -rjaffe 15Dec2011 (first tested 18Oct2011) -->
-	                                <div class="info-column fl-force-left">
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair ">
-	                                            <div class="header">
-	                                                <div class="label csc-place-pointRadiusSpatialFit-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-pointRadiusSpatialFit" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-footprintWKT-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-footprintWKT" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-footprintSRS-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-footprintSRS" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-footprintSpatialFit-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-footprintSpatialFit" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                                <div class="clear"></div>
-	                                <!-- Row 3 --><!-- Using new CSS to establish field widths and margins --rjaffe 15Dec2011 (first tested 18Oct2011) -->
-	                                <div class="info-column fl-force-left">
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair ">
-	                                            <div class="header">
-	                                                <div class="label csc-place-geoReferencedBy-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-geoReferencedBy" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-geoRefDate-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-geoRefDate" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-geoRefProtocol-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <select class="csc-place-geoRefProtocol input-select"><option value="">Options not loaded</option></select>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-geoRefSource-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-geoRefSource" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size1of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-geoRefVerificationStatus-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <select class="csc-place-geoRefVerificationStatus input-select"><option value="">Options not loaded</option></select>
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                                <div class="clear"></div>
-	                                <!-- Row 4 -->
-	                                <div class="info-column fl-force-left">
-	                                    <div class="size2of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-geoRefRemarks-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-geoRefRemarks" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                    <div class="size2of5 fl-force-left">
-	                                        <div class="info-pair">
-	                                            <div class="header">
-	                                                <div class="label csc-place-geoRefPlaceName-label"></div>
-	                                            </div>
-	                                            <div class="content">
-	                                                <input type="text" class="csc-place-geoRefPlaceName" />
-	                                            </div>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <div class="clear"></div>
-	                        <!--</div>-->
+                                <div class="clear"></div>
+                                <!-- Row 2 -->
+                                <div class="info-column fl-force-left">
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair ">
+                                            <div class="header">
+                                                <div class="label csc-place-pointRadiusSpatialFit-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-pointRadiusSpatialFit" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-footprintWKT-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-footprintWKT" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-footprintSRS-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-footprintSRS" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-footprintSpatialFit-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-footprintSpatialFit" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <!-- Row 3 -->
+                                <div class="info-column fl-force-left">
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair ">
+                                            <div class="header">
+                                                <div class="label csc-place-geoReferencedBy-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-geoReferencedBy" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-placeGeoRefGroup-geoRefDateGroup-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-placeGeoRefGroup-geoRefDateGroup editableText" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-geoRefProtocol-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <select class="csc-place-geoRefProtocol input-select"><option value="">Options not loaded</option></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-geoRefSource-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-geoRefSource" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size1of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-geoRefVerificationStatus-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <select class="csc-place-geoRefVerificationStatus input-select"><option value="">Options not loaded</option></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <!-- Row 4 -->
+                                <div class="info-column fl-force-left">
+                                    <div class="size2of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-geoRefRemarks-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-geoRefRemarks" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="size2of5 fl-force-left">
+                                        <div class="info-pair">
+                                            <div class="header">
+                                                <div class="label csc-place-geoRefPlaceName-label"></div>
+                                            </div>
+                                            <div class="content">
+                                                <input type="text" class="csc-place-geoRefPlaceName" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
 	                    </div>
 	                </div>
-                <div class="clear"></div>
+                    <div class="clear"></div>
 				</div>
             </div>
         </div>
