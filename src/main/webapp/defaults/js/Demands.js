@@ -424,7 +424,21 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                 recordType: "{pageBuilderIO}.options.recordType"
             }
         });
-        
+
+        // Pagebuilder
+        fluid.demands("cspace.pageBuilder", ["cspace.debug", "cspace.record"], {
+            options: {
+                components: {
+                    uispecVerifier: {
+                        type: "cspace.uispecVerifier"
+                    }
+                }
+            }
+        });
+        fluid.demands("cspace.pageBuilder", "cspace.pageBuilderIO", {
+            options: fluid.COMPONENT_OPTIONS
+        });
+
         // Pagebuilder renderer
         fluid.demands("cspace.pageBuilder.renderer", ["cspace.pageBuilderIO", "cspace.pageBuilder"], {
             options: {
@@ -1487,7 +1501,7 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                 model: "{recordEditor}.model",
                 applier: "{recordEditor}.options.applier",
                 listeners: {
-                    onLink: "{recordEditor}.refreshNoSave",
+                    onLink: "{recordEditor}.requestSave",
                     onRemove: "{recordEditor}.refreshNoSave"
                 }
             }
@@ -2355,6 +2369,16 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         });
         
         fluid.demands("cspace.advancedSearch.fetcher", "cspace.advancedSearch", "{options}");
+
+        fluid.demands("cspace.advancedSearch.searchFields", "cspace.debug", {
+            options: {
+                components: {
+                    uispecVerifier: {
+                        type: "cspace.uispecVerifier"
+                    }
+                }
+            }
+        });
     };
     
     fluid.demands("cspace.localDemands", "cspace.localData", {
