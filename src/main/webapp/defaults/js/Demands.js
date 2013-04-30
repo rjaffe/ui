@@ -79,6 +79,17 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             }
         });
         
+        // Batch Runner
+        fluid.demands("cspace.batchRunner.batchTypesSource", ["cspace.batchRunner", "cspace.localData"], {
+            funcName: "cspace.batchRunner.testBatchTypesSource",
+            args: {
+                targetTypeName: "cspace.batchRunner.testBatchTypesSource",
+                termMap: {
+                    recordType: "%recordType"
+                }
+            }
+        });
+
         // Autocomplete demands
         var localDataSourceDemands = {
             funcName: "cspace.URLDataSource",
@@ -658,6 +669,35 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             funcName: "cspace.reportProducer.generateReport",
             args: ["{reportProducer}.confirmation", "{reportProducer}.options.parentBundle", "{reportProducer}.requestReport", "{recordEditor}"]
         });
+
+        // Batch runner
+
+        fluid.demands("cspace.batchRunner", ["cspace.sidebar", "cspace.pageBuilder"], {
+            options: {
+                listeners: {
+                    onSynchronousFetch: "{loadingIndicator}.events.showOn.fire",
+                    onError: "{loadingIndicator}.events.hideOn.fire",
+                    onStop: "{loadingIndicator}.events.hideOn.fire",
+                    batchFinished: "{loadingIndicator}.events.hideOn.fire"
+                }
+            }
+        });
+
+        fluid.demands("cspace.batchRunner.batchTypesSource", "cspace.batchRunner", {
+            funcName: "cspace.URLDataSource",
+            args: {
+                url: "{batchRunner}.options.urls.batchTypesUrl",
+                targetTypeName: "cspace.batchRunner.batchTypesSource",
+                termMap: {
+                    recordType: "%recordType"
+                }
+            }
+        });
+        
+        fluid.demands("cspace.batchRunner.runBatch", ["cspace.batchRunner", "cspace.recordEditor"], {
+            funcName: "cspace.batchRunner.runBatch",
+            args: ["{batchRunner}.confirmation", "{batchRunner}.options.parentBundle", "{batchRunner}.requestBatch", "{recordEditor}"]
+        });
         
         // Confirmation demands
         fluid.demands("confirmation", "cspace.recordEditor", {
@@ -677,6 +717,7 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         });
         
         fluid.demands("confirmation", "cspace.reportProducer", "{options}");
+        fluid.demands("confirmation", "cspace.batchRunner", "{options}");
 
         // CreateNew demands
         fluid.demands("createRecord", "cspace.pageBuilder", {
@@ -1118,6 +1159,12 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                 model: {
                     showCreate: true
                 },
+                related: "{cspace.relationManager}.options.related",
+                primary: "{cspace.relationManager}.options.primary",
+                events: {
+                    onAddRelation: "{cspace.relationManager}.events.onAddRelation",
+                    onCreateNewRecord: "{cspace.relationManager}.events.onCreateNewRecord"
+                },
                 listeners: {
                     onClose: "{cspace.relationManager}.onDialogClose"
                 }
@@ -1125,12 +1172,25 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         });
         fluid.demands("cspace.searchToRelateDialog", ["cspace.relationManager", "cspace.sidebar"], {
             options: {
+                related: "{cspace.relationManager}.options.related",
+                primary: "{cspace.relationManager}.options.primary",
+                events: {
+                    onAddRelation: "{cspace.relationManager}.events.onAddRelation",
+                    onCreateNewRecord: "{cspace.relationManager}.events.onCreateNewRecord"
+                },
                 listeners: {
                     onClose: "{cspace.relationManager}.onDialogClose"
                 }
             }
         });
-        
+        fluid.demands("cspace.searchToRelateDialog", "cspace.searchResultsRelationManager", {
+            options: {
+                events: {
+                    onAddRelation: "{cspace.searchResultsRelationManager}.events.onAddRelation"
+                }
+            }
+        });
+
         // Repeatable demands
         fluid.demands("cspace.makeRepeatable", "cspace.recordEditor", {
             container: "{arguments}.0",
@@ -1229,6 +1289,22 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                 }
             }
         });
+        fluid.demands("search", ["cspace.searchToRelateDialog", "cspace.advancedSearch"], {
+            container: "{searchToRelateDialog}.container",
+            options: {
+                strings: {
+                    errorMessage: "{globalBundle}.messageBase.search-errorMessage",
+                    resultsCount: "{globalBundle}.messageBase.search-resultsCount",
+                    looking: "{globalBundle}.messageBase.search-looking",
+                    selected: "{globalBundle}.messageBase.search-selected",
+                    number: "{globalBundle}.messageBase.search-number",
+                    summary: "{globalBundle}.messageBase.search-summary",
+                    recordtype: "{globalBundle}.messageBase.search-recordtype",
+                    namespace: "{globalBundle}.messageBase.search-namespace",
+                    "summarylist.updatedAt": "{globalBundle}.messageBase.search-updatedAt"
+                }
+            }
+        });
         fluid.demands("search", "cspace.pageBuilder", {
             container: "{pageBuilder}.options.selectors.search",
             options: {
@@ -1241,6 +1317,7 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                     number: "{globalBundle}.messageBase.search-number",
                     summary: "{globalBundle}.messageBase.search-summary",
                     recordtype: "{globalBundle}.messageBase.search-recordtype",
+                    namespace: "{globalBundle}.messageBase.search-namespace",
                     "summarylist.updatedAt": "{globalBundle}.messageBase.search-updatedAt"
                 },
                 listeners: {
@@ -1293,6 +1370,19 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             }
         });
 
+        fluid.demands("cspace.searchResultsRelationManager", "cspace.relateSearchResults", {
+            options: {
+                events: {
+                    onRelateButtonClick: "{relateSearchResults}.events.onRelateButtonClick"
+                },
+                listeners: {
+                    beforeFetchExistingRelations: "{loadingIndicator}.events.showOn.fire",
+                    afterAddRelations: "{loadingIndicator}.events.hideOn.fire",
+                    onError: "{loadingIndicator}.events.hideOn.fire"
+                }
+            }
+        });
+
         fluid.demands("cspace.advancedSearch.updateSearchHistory", ["cspace.advancedSearch", "cspace.search.searchView"], {
             funcName: "cspace.search.updateSearchHistory",
             args: ["{advancedSearch}.searchHistoryStorage", "{arguments}.0", "{cspace.search.searchView}.model.pagination.traverser"]
@@ -1301,6 +1391,11 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         fluid.demands("cspace.searchBox.updateSearchHistory", ["cspace.searchBox", "cspace.search.searchView"], {
             funcName: "cspace.search.updateSearchHistory",
             args: ["{searchBox}.findeditHistoryStorage", "{arguments}.0", "{cspace.search.searchView}.model.pagination.traverser"]
+        });
+
+        fluid.demands("cspace.search.searchView.onInitialSearch", ["cspace.advancedSearch", "cspace.searchToRelateDialog", "cspace.search.searchView"], {
+            // The search component in the Add to Record dialog should not perform any search when the page initially loads.
+            funcName: "jQuery.noop"
         });
 
         fluid.demands("cspace.search.searchView.onInitialSearch", ["cspace.advancedSearch", "cspace.search.searchView"], {
@@ -1320,11 +1415,14 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                 strings: {
                     errorMessage: "{globalBundle}.messageBase.search-errorMessage",
                     resultsCount: "{globalBundle}.messageBase.search-resultsCount",
+                    relatedResultsCount: "{globalBundle}.messageBase.search-relatedResultsCount",
                     looking: "{globalBundle}.messageBase.search-looking",
+                    relatedLooking: "{globalBundle}.messageBase.search-relatedLooking",
                     selected: "{globalBundle}.messageBase.search-selected",
                     number: "{globalBundle}.messageBase.search-number",
                     summary: "{globalBundle}.messageBase.search-summary",
                     recordtype: "{globalBundle}.messageBase.search-recordtype",
+                    namespace: "{globalBundle}.messageBase.search-namespace",
                     "summarylist.updatedAt": "{globalBundle}.messageBase.search-updatedAt"
                 },
                 selectors: {
@@ -1396,6 +1494,11 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             funcName: "cspace.search.searchView.search",
             args: ["{arguments}.0", "{searchView}"]
         });
+
+        fluid.demands("cspace.search.searchView.search", ["cspace.search.searchView", "cspace.searchToRelateDialog", "cspace.advancedSearch"], {
+            funcName: "cspace.search.searchView.search",
+            args: ["{arguments}.0", "{searchView}"]
+        });
         
         fluid.demands("cspace.search.searchView.search", ["cspace.search.searchView", "cspace.advancedSearch"], {
             funcName: "cspace.search.searchView.advancedSearch",
@@ -1421,7 +1524,7 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             funcName: "cspace.searchBox.navigateToSearch",
             args: ["{searchBox}", "{recordEditor}"]
         });
-        fluid.demands("cspace.searchBox.navigateToSearch", ["cspace.searchBox", "cspace.search.searchView"], {
+        fluid.demands("cspace.searchBox.navigateToSearch", ["cspace.searchBox", "cspace.search.searchView", "cspace.searchToRelateDialog"], {
             funcName: "cspace.search.handleSubmitSearch",
             args: ["{searchBox}", "{searchView}"]
         });
@@ -1517,7 +1620,7 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                 selectors: {
                     relatedNonVocabularies: ".csc-related-nonVocabularies"
                 },
-                selectorsToIgnore: ["report", "termsUsed", "relatedVocabularies", "relatedCataloging", "relatedProcedures", "header", "togglable", "termsUsedBanner", "relatedNonVocabularies"],
+                selectorsToIgnore: ["batch", "report", "termsUsed", "relatedVocabularies", "relatedCataloging", "relatedProcedures", "header", "togglable", "termsUsedBanner", "relatedNonVocabularies"],
                 model: {
                     categories: [{
                         expander: {
@@ -1791,6 +1894,66 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                     }
                 }
             }
+        });
+
+        // computedField demands
+        fluid.demands("cspace.computedField", "cspace.recordEditor", {
+            container: "{arguments}.0",
+            mergeAllOptions: [{
+                applier: "{recordEditor}.applier",
+                model: "{recordEditor}.model",
+                events: {
+                    removeApplierListeners: "{recordEditor}.events.onRenderTree",
+                    onSubmit: "{recordEditor}.saver.events.beforeSave",
+                    recordEditorAfterSave: "{recordEditor}.events.afterSave",
+                    recordEditorAfterCancel: "{recordEditor}.events.afterCancel"
+                },
+                listeners: {
+                    recordEditorAfterSave: {
+                        listener: "{computedField}.events.removeAllListeners.fire",
+                        priority: "first"
+                    },
+                    recordEditorAfterCancel: {
+                        listener: "{computedField}.events.removeAllListeners.fire"
+                    }
+                }
+            }, "{arguments}.1"]
+        });
+        fluid.demands("cspace.computedField", ["cspace.repeatableImpl", "cspace.makeRepeatable", "cspace.recordEditor"], {
+            container: "{arguments}.0",
+            mergeAllOptions: [{
+                applier: "{repeatableImpl}.applier",
+                model: "{repeatableImpl}.model",
+                events: {
+                    repeatableOnRefreshView: "{repeatableImpl}.events.onRefreshView",
+                    recordEditorOnRenderTree: "{recordEditor}.events.onRenderTree",
+                    onSubmit: "{recordEditor}.saver.events.beforeSave",
+                    recordEditorAfterSave: "{recordEditor}.events.afterSave",
+                    recordEditorAfterCancel: "{recordEditor}.events.afterCancel"
+                },
+                listeners: {
+                    repeatableOnRefreshView: "{computedField}.events.removeAllListeners.fire",
+                    recordEditorOnRenderTree: "{computedField}.events.removeAllListeners.fire",
+                    recordEditorAfterSave: {
+                        listener: "{computedField}.events.removeAllListeners.fire",
+                        priority: "first"
+                    },
+                    recordEditorAfterCancel: {
+                        listener: "{computedField}.events.removeAllListeners.fire"
+                    }
+               }
+            }, "{arguments}.1"]
+        });
+        fluid.demands("cspace.computedField", "cspace.advancedSearch.searchFields", {
+            container: "{arguments}.0",
+            mergeAllOptions: [{
+                applier: "{searchFields}.applier",
+                model: "{searchFields}.model",
+                events: {
+                    removeAllListeners: "{advancedSearch}.events.recordTypeChanged",
+                    onSubmit: "{searchView}.events.onAdvancedSearch"
+                },
+            }, "{arguments}.1"]
         });
     };
     
